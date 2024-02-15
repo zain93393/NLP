@@ -1,24 +1,19 @@
 def tokenization(text):
     tokens = []
-    curr=""
-    n=0
+    curr = ""
     for counter in text:
-        n=n+1
         if counter.isalnum() or counter == "'":
-            curr=curr+counter
-        elif(counter!=" "): 
-            tokens.append(curr)
-            tokens.append(counter)
-            curr=""
+            curr += counter
         else:
-            tokens.append(curr)
-            curr=""
-        if n==200:
-            break
+            if curr:
+                tokens.append(curr)
+                curr = ""
+            if counter != " ":
+                tokens.append(counter)
+    if curr:
+        tokens.append(curr)
+    return tokens
 
-    print(tokens)
+text = "Natural language processing (NLP) refers to the branch of computer science—and more specifically, the branch of artificial intelligence or AI—concerned with giving computers the ability to understand text and spoken words in much the same way human beings can. NLP combines computational linguistics—rule-based modeling of human language—with statistical, machine learning, and deep learning models. Together, these technologies enable computers to process human language in the form of text or voice data and to ‘understand’ its full meaning, complete with the speaker or writer’s intent and sentiment. NLP drives computer programs that translate text from one language to another, respond to spoken commands, and summarize large volumes of text rapidly—even in real time. There’s a good chance you’ve interacted with NLP in the form of voice-operated GPS systems, digital assistants, speech-to-text dictation software, customer service chatbots, and other consumer conveniences. But NLP also plays a growing role in enterprise solutions that help streamline business operations, increase employee productivity, and simplify mission-critical business processes."
 
-
-text = "Natural language processing (NLP) refers to the branch of computer science—and more specifically, the branch of artificial intelligence or AI—concerned with giving computers the ability to understand text and spoken words in much the same way human beings can.NLP combines computational linguistics—rule-based modeling of human language—with statistical, machine learning, and deep learning models. Together, these technologies enable computers to process human language in the form of text or voice data and to ‘understand’ its full meaning, complete with the speaker or writer’s intent and sentiment. NLP drives computer programs that translate text from one language to another, respond to spoken commands, and summarize large volumes of text rapidly—even in real time. There’s a good chance you’ve interacted with NLP in the form of voice-operated GPS systems, digital assistants, speech-to-text dictation software, customer service chatbots, and other consumer conveniences. But NLP also plays a growing role in enterprise solutions that help streamline business operations, increase employee productivity, and simplify mission-critical business processes."
-
-tokenization(text)
+print(tokenization(text))
